@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
 import type { User } from '@supabase/supabase-js';
 
-// Hookどんな奴か定義
+// Hookどんな奴か定義 今特印敷いているのは誰か、読み込み中かどうか
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
