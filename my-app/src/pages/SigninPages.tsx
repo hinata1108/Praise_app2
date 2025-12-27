@@ -17,7 +17,7 @@ export function SigninPage() {
     setError(null);
     try {
       await signIn(email, password);
-      navigate('/');
+      navigate('/home');
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
