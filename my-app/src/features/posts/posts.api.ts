@@ -1,21 +1,22 @@
 import { supabase } from '../../lib/supabase';
 
 // 新しいポストを作成する。形式が違ったらエラー、正しければデータを返す
-export const  createPost= async (user_name:string, content:string) => {
-    const { data, error } = await supabase.from('posts').insert({
-};
+export const  createPost= async (content:string) => {
+    const { data, error } = await supabase.from('posts').insert({content});
+    if (error) throw error;
+    return data;
+}
 
-//ログイン
-export const signIn = async (email: string, password: string) => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-  if (error) throw error;
-  return data.user;
-};
+//投稿一覧
+export const fetchPosts =async () => {
+    const {data,error} = await supabase.from("posts").select("*").order("created_at",{ascending:false});
+    if(error) throw error;
+    return data;    
+}
 
-// ログアウト
-export const signOut = async () => {
-  await supabase.auth.signOut();
-};
+//自分の投稿だけ
+export const fetchMyPosts =async (userId: string) => {
+    const {data,error} = await supabase.from("posts").select().eq('user_id', userId).order("created_at",{ascending:false});
+    if(error) throw error;
+    return data;    
+}
