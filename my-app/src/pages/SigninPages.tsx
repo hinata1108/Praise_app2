@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signUp } from '../features/auth/auth.api';
+import { signIn } from '../features/auth/auth.api';
 
-export function SignupPage() {
+
+export function SigninPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +16,8 @@ export function SignupPage() {
     setLoading(true);
     setError(null);
     try {
-      await signUp(email, password);
+      await signIn(email, password);
+      navigate('/home');
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
@@ -27,11 +29,11 @@ export function SignupPage() {
     }
   };
 
-  return (
-
+    return (
+        
     <form onSubmit={handleSubmit}>
-      <button type="button" onClick={() => navigate('/login')}>ログインはこちら</button>
-      <h1>新規登録</h1>
+          <button type="button" onClick={() => navigate('/signup')}>新規登録はこちら</button>
+      <h1>ログイン</h1>
       <label htmlFor="email">メールアドレス</label>
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
       <label htmlFor="password">パスワード</label>
@@ -42,9 +44,9 @@ export function SignupPage() {
         required
       />
       <button type="submit" disabled={loading}>
-        {loading ? '登録中...' : '登録'}
+        {loading ? 'ログイン中...' : 'ログイン'}
       </button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
-  );
+  )
 }
