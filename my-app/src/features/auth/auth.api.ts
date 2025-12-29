@@ -7,13 +7,15 @@ export const signUp = async (email: string, password: string,user_name: string) 
   if (error) throw error;
   const user = data.user;
   // ２Profileの登録
-  const {error:plofileError} =await supabase
+  const {error:profilesError} =await supabase
   .from("profiles")
   .insert({
     id: user?.id,
+
     user_name
   })
-  if(plofileError) throw plofileError;
+if(profilesError) {throw profilesError;
+}
   
   return {
     user

@@ -2,7 +2,14 @@ import { supabase } from '../../lib/supabase';
 
 // 新しいポストを作成する。形式が違ったらエラー、正しければデータを返す
 export const  createPost= async (content:string) => {
-    const { data, error } = await supabase.from('posts').insert({content});
+//ユーザーを取得
+    //dataの中のuserを取り出す
+    const {data:{user}} =await supabase.auth.getUser();
+    if (!user){throw new Error("ログインしてください")}
+    //profileを作成
+    const {error:upsertError} =await supabase.from ("profiles").upsert({id:user.id})
+    if (upsertError) console.error("プロフィールの作成に失敗しました",upsertError);
+    const { data, error } = await supabase.from('posts').insert([{content, user_id: user.id}]);
     if (error) throw error;
     return data;
 }

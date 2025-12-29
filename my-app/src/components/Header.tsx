@@ -11,7 +11,7 @@ export const Header = () => {
     return ( 
             <header className="header-modern">
                 <div className='container'>
-                <h1>ほめほめアプリ</h1>
+                <h1>アプリ</h1>
                 <div className='nav-wrapper'>
                 <nav>
                     {user ?(
