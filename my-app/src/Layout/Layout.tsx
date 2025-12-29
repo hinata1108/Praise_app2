@@ -11,8 +11,6 @@ export const Layout: FC = () => {
     return (
         <>
             <Header/>
-
-            //ここが切り替わる
             <Outlet />
 
             

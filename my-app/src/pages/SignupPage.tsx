@@ -5,6 +5,7 @@ import { signUp } from '../features/auth/auth.api';
 
 export function SignupPage() {
   const navigate = useNavigate();
+  const [user_name, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +16,7 @@ export function SignupPage() {
     setLoading(true);
     setError(null);
     try {
-      await signUp(email, password);
+      await signUp(email, password,user_name);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
@@ -32,6 +33,8 @@ export function SignupPage() {
     <form onSubmit={handleSubmit}>
       <button type="button" onClick={() => navigate('/login')}>ログインはこちら</button>
       <h1>新規登録</h1>
+      <label htmlFor="user_name">ユーザー名</label>
+      <input type="text" value={user_name} onChange={(e) => setUserName(e.target.value)} required />
       <label htmlFor="email">メールアドレス</label>
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
       <label htmlFor="password">パスワード</label>
