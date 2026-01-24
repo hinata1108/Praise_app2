@@ -6,6 +6,8 @@ import { fetchPosts ,fetchMyPosts} from './posts.api';
 type Post = {
   id: number;
   content: string;
+  profiles: {user_name: string}|null;
+  created_at: string;
 };
 
 

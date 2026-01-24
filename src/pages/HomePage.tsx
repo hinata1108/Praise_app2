@@ -8,7 +8,9 @@ export function HomePage() {
     <div>
       <h2>みんなの投稿</h2>
       {posts.map((post) => (
-        <div key={post.id}>{post.content}</div>
+        <div key={post.id}>
+          {post.profiles?.user_name || "名無し"}:
+          {post.content}</div>
       ))}
     </div>
   );

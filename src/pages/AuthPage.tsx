@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn,signUp } from '../features/auth/auth.api';
+import './AuthPage.css';
 
 
 export function AuthPage() {
@@ -51,37 +52,45 @@ export function AuthPage() {
         }
     };
     return (
-        <div>
-            <button onClick={()=>setActiveTab("signup")}>
-                新規登録
-            </button>
-            <button onClick={()=>setActiveTab("signin")}>
-                ログイン
-            </button>
+    <div className="page">
+        <div className="tab">
+            <div className="tab_buttons">
+                <button className={activeTab === "signup" ? "active" : ""} onClick={()=>setActiveTab("signup")}>
+                    新規登録
+                </button>
+                <button className={activeTab === "signin" ? "active" : ""} onClick={()=>setActiveTab("signin")}>
+                    ログイン
+                </button>
+            </div>
 
             {activeTab==="signup" ?(
-                <form onSubmit={handleSignupSubmit}>
-                <h1>新規登録</h1>
+                <form className="form" onSubmit={handleSignupSubmit}>
+                <div className="input_group">
                 <label htmlFor="signupuser_name">ユーザー名</label>
                 <input type="text" value={signupuser_name} onChange={(e)=>setsignupUserName(e.target.value)}></input>
                 <label htmlFor="signup_email">メールアドレス</label>
                 <input type="email" value={signupemail} onChange={(e)=>setsignupEmail(e.target.value)} />
                 <label htmlFor="signuppassword">パスワード</label>
                 <input type="password" value={signuppassword} onChange={(e)=>setsignupPassword(e.target.value)} />
+                </div>
                 <button type="submit" disabled={signuploading}>
-                    {signuploading ?"登録中…":"登録できました"}</button>
+                    {signuploading ?"登録中…":"登録"}</button>
+                    {signuperror && <p style={{ color: 'red' }}>{signuperror}</p>}
                 </form>):(
-                <form onSubmit={handleSignInSubmit}>
-                <h1>ログイン</h1>
+                <form className="form" onSubmit={handleSignInSubmit}>
+                <div className="input_group">
                 <label htmlFor="signin_email">メールアドレス</label>
                 <input type="email" value={loginemail} onChange={(e)=>setloginEmail(e.target.value)} />
                 <label htmlFor="signinpassword">パスワード</label>
                 <input type="password" value={loginpassword} onChange={(e)=>setloginPassword(e.target.value)} />
+                </div>
                 <button type="submit" disabled={loginloading}>
                     {loginloading ?"ログイン中…":"ログイン"}</button>
+                    {loginerror && <p style={{ color: 'red' }}>{loginerror}</p>}
                 </form>)}
 
         </div>
+    </div>
     );
 }
         

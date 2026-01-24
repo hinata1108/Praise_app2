@@ -16,7 +16,8 @@ export const  createPost= async (content:string) => {
 
 //投稿一覧
 export const fetchPosts =async () => {
-    const {data,error} = await supabase.from("posts").select("*").order("created_at",{ascending:false});
+    const {data,error} = await supabase.from("posts").select("*, profiles!inner(*)"
+).order("created_at",{ascending:false});
     if(error) throw error;
     return data;    
 }
@@ -25,7 +26,7 @@ export const fetchPosts =async () => {
 export const fetchMyPosts =async () => {
     const {data:{user}} =await supabase.auth.getUser();
     if (!user){throw new Error("ログインしてください")}
-    const {data,error} = await supabase.from("posts").select().eq('user_id', user.id).order("created_at",{ascending:false});
+    const {data,error} = await supabase.from("posts").select("*, profiles!inner(*)").eq('user_id', user.id).order("created_at",{ascending:false});
     if(error) throw error;
     return data;    
 }

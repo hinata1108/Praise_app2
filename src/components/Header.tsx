@@ -1,10 +1,17 @@
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../features/auth/auth.hooks';
 import { signOut } from '../features/auth/auth.api';
 
+
 export const Header = () => {
     const {user,loading}=useAuth();
+    const navigate = useNavigate();
+
+    const handleSignOut = async () => {
+        await signOut();
+        navigate('/login');
+    };
 
     if (loading) return <div>Loading...</div>;
 
@@ -20,7 +27,7 @@ export const Header = () => {
                         <li><Link to="/mypost">自分の投稿</Link></li>
                         <li><Link to="/create">投稿を作成</Link></li>
                         <li><Link to="/home">みんなの投稿</Link></li>
-                        <button onClick={signOut}>ログアウト</button>
+                        <button onClick={handleSignOut}>ログアウト</button>
                     </ul>
                     </>
                     ):(<></>)
