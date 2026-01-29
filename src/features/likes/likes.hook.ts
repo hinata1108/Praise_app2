@@ -30,6 +30,9 @@ useEffect(() => {
 // トグル機能
     const toggleLikes = async() => {
         if(!user){throw new Error("ログインしてください")}
+
+        try{
+            setLoading (true);
         if (isLiked){
             await deleteLikes(postId);
             setLikes(likes.filter((like)=> like.user_id !== user.id))
@@ -40,13 +43,23 @@ useEffect(() => {
             const newLikes =await fetchLikes(postId);
             setLikes(newLikes)
             setIsLiked(true);
+        }} catch (error) {
+            console.error(error)
+            alert("いいねの更新に失敗しました")
+        } finally {
+            setLoading(false);
         }
     };
+
+    //言い値の数数える
+    const countLikes = likes.length
+    
     return{
         likes,
         isLiked,
         toggleLikes,
         loading,
+        countLikes
 
     };
 }

@@ -1,4 +1,6 @@
 import {Posts} from '../features/posts/posts.hook';
+import { Likes } from '../features/likes/likes.hook';
+import {Postcard} from '../components/postcards';
 
 
 export function HomePage() {
@@ -9,9 +11,10 @@ export function HomePage() {
       <h2>みんなの投稿</h2>
       {posts.map((post) => (
         <div key={post.id}>
-          {post.profiles?.user_name || "名無し"}:
-          {post.content}</div>
+          <Postcard post={post} />
+          </div>
       ))}
     </div>
+
   );
 }
