@@ -22,8 +22,8 @@ export function Postcard ({post}:PostcardProps) {
             {post.content}
         </div>
         <div className="likes">
-            <button onClick={toggleLikes}>
-                {isLiked? "❤️": "🤍"} 
+            <button onClick={toggleLikes} className={isLiked? "liked":"not-liked"}>
+                👏すごい！
             </button>
             <span>{loading ? "..." : countLikes}いいね</span>
         </div>

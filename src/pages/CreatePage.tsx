@@ -1,6 +1,7 @@
 import {createPost} from '../features/posts/posts.api';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Createpage.css';
 
 
 export function CreatePage() {
@@ -22,10 +23,10 @@ export function CreatePage() {
       }
     }
   return (
-    <div>
+    <div className="page">
       {error && <p style={{ color: 'red' }}>{error}</p>}
         <h1>投稿作成</h1>
-   <textarea  value={content} onChange={(e) => setContent(e.target.value)} required/>   
+   <textarea  className="textarea" value={content} onChange={(e) => setContent(e.target.value)} required/>   
    <button type="submit" onClick={handleSubmit}>投稿する</button>
     </div>
   );

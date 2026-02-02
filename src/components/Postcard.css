@@ -18,11 +18,20 @@
     font-size: 1.9em;
     color: #333;
 }
-.post_content {
+.content {
     width: 100%;
     padding-left:20px;
     text-align: left;
-    font-weight:500;
-    font-size: 1.5em;
+    font-weight:400;
+    font-size: 1.2em;
     color: #555;
+}
+.likes {
+    font-weight:500;
+    font-size: 1em;
+    color: #555;
+}
+.liked {
+    background: linear-gradient(to right, #ea580c, #db2777);
+    color: #ffffff;
 }
