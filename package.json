@@ -2,12 +2,14 @@
   "name": "products",
   "type": "module",
   "private": true,
+  "homepage": "https://hinata1108.github.io/Praise_app2/",
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --write .",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {

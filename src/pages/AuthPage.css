@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
     font-family: Arial, sans-serif;
 }
 .tab {
@@ -19,7 +18,7 @@
     width: 100%;
     gap:8px;
     position:relative;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .tab .tab_buttons {
@@ -68,7 +67,7 @@
 .input_group input {
     padding: 10px;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 2px solid #fed7aa;
     font-size: 14px;
     width: 100%;
     box-sizing: border-box;

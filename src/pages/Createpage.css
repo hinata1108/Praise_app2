@@ -1,0 +1,32 @@
+.page{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+
+.textarea {
+    width: 100%;
+    max-width: 700px;
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #fed7aa;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline:none;
+    border-color: #ffa600;
+}
+
+button {
+    border: 2px solid #fed7aa;
+}
+button:hover {
+    background: linear-gradient(to right, #ea580c, #db2777);
+    color: #ffffff;
+}
